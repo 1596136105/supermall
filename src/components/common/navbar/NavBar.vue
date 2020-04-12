@@ -22,7 +22,7 @@ export default {
         left: 0;
         width: 100%;
         box-shadow: 0 1px 1px rgba(100, 100, 100, 0.1);
-       
+        z-index: 1;
     }
     .left, .right{
         width: 60px;
