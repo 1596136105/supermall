@@ -10,11 +10,9 @@ export default {
 }
 </script>
 
-<style>
+<style >
 .my-swipe {
   color: #fff;
   text-align: center;
-  position: relative;
-  top: 43px;
- }
+}
 </style>

@@ -25,7 +25,7 @@ export default {
     
 <style scoped>
     .goodsitem {
-        padding-bottom: 40px;
+        padding-bottom: 20px;
         position: relative;
         width: 48%;
     }

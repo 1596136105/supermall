@@ -1,11 +1,13 @@
 <template>
   <div class="home">
         <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-       <home-swiper :banners = "banners"></home-swiper>
-       <home-recommend-view :recommends = "recommends"></home-recommend-view>
-       <feature-view></feature-view>
-       <tab-control class="tabcontrol" :titles="['流行','新款','精选']" @tabClick = "tabClick"></tab-control>
-       <goods-list :goods = "goods[currentType].list"></goods-list>
+    <scroll class="home-content">  
+        <home-swiper :banners = "banners"></home-swiper>
+        <home-recommend-view :recommends = "recommends"></home-recommend-view>
+        <feature-view></feature-view>
+        <tab-control class="tabcontrol" :titles="['流行','新款','精选']" @tabClick = "tabClick"></tab-control>
+        <goods-list :goods = "goods[currentType].list"></goods-list>
+      </scroll>
   </div>
 </template>
 
@@ -18,10 +20,12 @@ import HomeSwiper from './childComps/HomeSwiper'
 import NavBar from '../../components/common/navbar/NavBar'
 import tabControl from '../../components/content/tabControl/tabControl'
 import GoodsList from '../../components/content/goods/GoodsList'
+import Scroll from '../../components/common/scroll/Scroll'
 
 import {getHomeMultidata,getHomeGoods} from "../../network/home"   //导入home.js，面向home.js进行网络请求
 
 export default {
+
     name: 'home',
     components: {
         NavBar,
@@ -30,6 +34,7 @@ export default {
        FeatureView,
        tabControl,
        GoodsList,
+       Scroll,
     },
     data(){
         return {
@@ -89,9 +94,13 @@ export default {
        
     }
 }
-</script>
+</script >
 
-<style>
+<style scoped>
+    .home {
+        height: 100vh;
+        position: relative;
+    }
     .home-nav {
         background-color: #ff8198;
         color: #ffffff;
@@ -100,5 +109,12 @@ export default {
         position: sticky;
         top: 44px;
         z-index: 1;
+    }
+    .home-content {
+        position: absolute;
+        top: 44px;
+        bottom: 49px;
+        left: 0;
+        right: 0;
     }
 </style>

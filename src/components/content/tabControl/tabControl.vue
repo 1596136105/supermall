@@ -34,8 +34,7 @@ export default {
 <style>
     .tabcontrol {
         display: flex;
-        position: relative;
-        top: 70px;
+        
         text-align: center; 
         height: 30px;
         margin-bottom: 10px;

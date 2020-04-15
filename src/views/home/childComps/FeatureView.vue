@@ -17,10 +17,8 @@ export default {
 
 <style scoped>
     .feature {
-        position: relative;
-        top: 60px;
-        width: 100%;
-        margin-bottom: 70px;
+        margin-top: 8px;
+        margin-bottom: 10px;
     }
 
 </style>
