@@ -1,13 +1,20 @@
 <template>
   <div class="home">
         <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-    <scroll class="home-content">  
+    <scroll class="home-content" 
+    ref="scroll" 
+    :probe-type="3"  
+    @scroll="contentScroll"
+    :pull-up-load = "true"
+    @pullingUp = "loadmore">  
         <home-swiper :banners = "banners"></home-swiper>
         <home-recommend-view :recommends = "recommends"></home-recommend-view>
         <feature-view></feature-view>
         <tab-control class="tabcontrol" :titles="['流行','新款','精选']" @tabClick = "tabClick"></tab-control>
         <goods-list :goods = "goods[currentType].list"></goods-list>
       </scroll>
+        <!-- 组件想要监听点击要用native修饰符 -->
+      <back-top class="backtop" @click.native="backClick" v-show="isshow"></back-top>
   </div>
 </template>
 
@@ -21,6 +28,7 @@ import NavBar from '../../components/common/navbar/NavBar'
 import tabControl from '../../components/content/tabControl/tabControl'
 import GoodsList from '../../components/content/goods/GoodsList'
 import Scroll from '../../components/common/scroll/Scroll'
+import BackTop from '../../components/content/backtop/BackTop'
 
 import {getHomeMultidata,getHomeGoods} from "../../network/home"   //导入home.js，面向home.js进行网络请求
 
@@ -35,6 +43,7 @@ export default {
        tabControl,
        GoodsList,
        Scroll,
+       BackTop,
     },
     data(){
         return {
@@ -45,7 +54,8 @@ export default {
                 'new': {page:0, list: []},
                 'sell': {page:0, list: []},
             },
-            currentType: 'pop'
+            currentType: 'pop',
+            isshow: false,
         }   
     },
     created() {
@@ -88,10 +98,23 @@ export default {
             getHomeGoods(type,page).then(res => {
                 this.goods[type].list.push(...res.data.list)
                 this.goods[type].page += 1
-            })
-        }
 
-       
+                this.$refs.scroll.finishPullUp()
+            })
+        },
+        backClick() {
+            //scroll组建中定义了scrollTo方法可以直接调用
+            this.$refs.scroll.scrollTo(0,0)
+            //scroll未定义
+            //this.$refs.scroll.scroll.scrollTo(0,0,500)
+        },
+        //监听滑动事件
+        contentScroll(position) {
+            this.isshow = (-position.y) > 1000
+        },
+        loadmore() {
+            this.getHomeGoods(this.currentType)
+        }
     }
 }
 </script >
@@ -106,7 +129,7 @@ export default {
         color: #ffffff;
     }
     .tabcontrol {
-        position: sticky;
+
         top: 44px;
         z-index: 1;
     }
@@ -116,5 +139,8 @@ export default {
         bottom: 49px;
         left: 0;
         right: 0;
+        overflow: hidden;
+       
     }
+ 
 </style>

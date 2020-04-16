@@ -28,6 +28,7 @@ export default {
       text-align: center;
       padding: 5px 0px 15px;
       border-bottom: 10px solid #ece8e8;
+      
   }
   .recommenditem {
       flex: 1;
