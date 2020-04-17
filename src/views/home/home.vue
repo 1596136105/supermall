@@ -66,6 +66,12 @@ export default {
         this.getHomeGoods('pop')
         this.getHomeGoods('new')
         this.getHomeGoods('sell')
+
+        //3.监听item中图片加载完成
+        //每一张图片加载完成就调用一次刷新
+        this.$bus.$on('itemImageLoad',() => {
+            this.$refs.scroll.scroll.refresh()
+        })
     },
     methods: {
         /* 事件监听方法 */
@@ -96,10 +102,9 @@ export default {
         getHomeGoods(type) {
             const page =this.goods[type].page + 1
             getHomeGoods(type,page).then(res => {
-                this.goods[type].list.push(...res.data.list)
+                this.goods[type].list.push(...res.data.list) //ES6语法，一个一个放入数组
                 this.goods[type].page += 1
                 this.$refs.scroll.finishPullUp()
-                this.$refs.scroll.scroll.refresh()
             })
         },
         backClick() {

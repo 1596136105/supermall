@@ -1,6 +1,7 @@
 <template>
 <div class="goodsitem">
-  <img :src="goodsItem.show.img" alt="">
+   <!--  load事件：监听加载事件 -->
+  <img :src="goodsItem.show.img" alt="" @load="imageLoad">
   <div class="goodsinfo">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -19,6 +20,12 @@ export default {
             }
         }
     
+    },
+    methods: {
+        imageLoad() { 
+            this.$bus.$emit('itemImageLoad')
+             //使用$emit将事件发送到$bus事件总线,home组件即可跳过goodslist组件直接监听该事件
+        }
     }
 }
 </script>

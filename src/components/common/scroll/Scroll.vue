@@ -43,6 +43,7 @@ export default {
         this.scroll.on('pullingUp', () => {
             this.$emit('pullingUp')
         })
+        this.scroll.refresh()
     },
     methods: {
         //定义一个scrollTo方法，三个参数，time为默认值300
