@@ -29,7 +29,7 @@ export default {
     },
     mounted() {
         //.创建BScroll对象
-        this.scroll = new BScroll(this.$refs.wrapper,{
+        this.scroll = new BScroll('.wrapper',{
             click: true,
             tap: true,
             probeType: this.probeType,
@@ -41,9 +41,9 @@ export default {
         })
         //3.监听上拉事件
         this.scroll.on('pullingUp', () => {
-            this.$emit('pullingUp')
+            this.$emit('pullingUp') 
         })
-        this.scroll.refresh()
+        
     },
     methods: {
         //定义一个scrollTo方法，三个参数，time为默认值300
