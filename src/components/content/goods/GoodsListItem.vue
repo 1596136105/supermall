@@ -1,5 +1,5 @@
 <template>
-<div class="goodsitem">
+<div class="goodsitem" @click="itemClick">
    <!--  load事件：监听加载事件 -->
   <img :src="goodsItem.show.img" alt="" @load="imageLoad">
   <div class="goodsinfo">
@@ -25,6 +25,9 @@ export default {
         imageLoad() { 
             this.$bus.$emit('itemImageLoad')
              //使用$emit将事件发送到$bus事件总线,home组件即可跳过goodslist组件直接监听该事件
+        },
+        itemClick() {
+         this.$router.push('/detail/' + this.goodsItem.iid)
         }
     }
 }
