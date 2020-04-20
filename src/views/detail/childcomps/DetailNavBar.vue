@@ -1,6 +1,7 @@
 <template>
   <div class="detailnavbar">
       <nav-bar>
+          <div slot="left" class="imgitem" @click="backClick"><img src="../../../assets/img/detail/向左.svg" alt=""></div>
           <div slot="center" class="title">
               <div v-for="(item,key) in titles" :key="key" class="title-item" :class="{active: key === currentIndex}" @click="titlesClick(key)">
                   {{item}}
@@ -25,6 +26,9 @@ export default {
     methods: {
         titlesClick(key) {
             this.currentIndex = key
+        },
+        backClick() {
+            this.$router.go(-1)
         }
     }
 }
@@ -33,7 +37,7 @@ export default {
 <style scoped>
     .title {
         display: flex;
-        line-height: 40px;
+        line-height: 44px;
     }
     .title-item {
         flex: 1;
@@ -41,5 +45,13 @@ export default {
     }
     .active {
         color: #ff5777;
+    }
+    img {
+        margin-top: 8px;
+        height: 30px;
+        margin-left: 2px;
+    }
+    .imgitem {
+        height: 44px;
     }
 </style>

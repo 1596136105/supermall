@@ -37,7 +37,6 @@ import BackTop from '../../components/content/backtop/BackTop'
 import {getHomeMultidata,getHomeGoods} from "../../network/home"   //导入home.js，面向home.js进行网络请求
 
 export default {
-
     name: 'home',
     components: {
         NavBar,
