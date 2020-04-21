@@ -1,6 +1,6 @@
 <template>
       <swiper-bar class="detailswiper">
-          <swiper-item v-for="(item,key) in topImages" :key="key">
+          <swiper-item v-for="(item,key) in topImage" :key="key">
               <img :src="item" alt="">
           </swiper-item>
       </swiper-bar>
@@ -16,7 +16,7 @@ export default {
          SwiperItem,
     },
     props: {
-        topImages: {
+        topImage: {
             type: Array,
             default(){
                 return []
@@ -30,5 +30,6 @@ export default {
     .detailswiper {
         height: 300px;
         overflow: hidden;
+        margin-bottom: 12px;
     }
 </style>

@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style scoped>
+    .detailnavbar {
+        position: relative;
+        z-index: 9;
+    }
     .title {
         display: flex;
         line-height: 44px;

@@ -36,6 +36,7 @@ const routes = [
         path: '/detail/:id',
         component: detail
     },
+    
 ]
 
 //2.创建router
