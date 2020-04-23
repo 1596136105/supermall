@@ -36,6 +36,7 @@ export default {
 
 <style scoped>
     .detailnavbar {
+        background-color: #fff;
         position: relative;
         z-index: 9;
     }
