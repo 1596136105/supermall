@@ -9,6 +9,8 @@
         <detail-comment-info ref="comment" :comment-info = "commentInfo"></detail-comment-info>
         <goods-list ref="recommends" :goods = recommends></goods-list>
         </scroll>
+        <back-top @click.native = "backtopclick" v-show="isshow"></back-top>
+        <detail-bottom-bar></detail-bottom-bar>
   </div>
 </template>
 
@@ -19,6 +21,8 @@ import DetailBaseInfo from './childcomps/DetailBaseInfo'
 import DetailShopInfo from './childcomps/DetailShopInfo'
 import DetailGoodsInfo from './childcomps/DetailGoodsInfo'
 import DetailCommentInfo from './childcomps/DetailCommentInfo'
+import DetailBottomBar from './childcomps/DetailBottomBar'
+import BackTop from '../../components/content/backtop/BackTop'
 
 
 import {getDetail,Goods,Shop,getRecommend} from "../../network/detail"
@@ -39,7 +43,8 @@ export default {
             recommends: [], 
             themeTopYs: [],
             itemImageLisetener: null,
-            currentIndex: 0
+            currentIndex: 0,
+            isshow: false,
         }
     },
     components: {
@@ -51,6 +56,8 @@ export default {
         DetailGoodsInfo,
         DetailCommentInfo,
         GoodsList,
+        DetailBottomBar,
+        BackTop,
        
     },
     created() {
@@ -132,6 +139,7 @@ export default {
         detailScroll(position) {
             //1.获取Y值
             const positionY = -position.y
+            this.isshow = positionY > 500
 
             //2.positionY和主题中的值进行对比
             let length = this. themeTopYs.length
@@ -150,10 +158,12 @@ export default {
 
                    this.$refs.navbar.currentIndex = this.currentIndex
                    
-                    
-                   
                 }
             }
+        },
+
+        backtopclick() {
+            this.$refs.scroll.scrollTo(0,0)
         }
     }
   
