@@ -1,7 +1,7 @@
 <template>
 <div class="goodsitem" @click="itemClick">
    <!--  load事件：监听加载事件 -->
-  <img :src="goodsItem.show.img" alt="" @load="imageLoad">
+  <img :src="showImage" alt="" @load="imageLoad">
   <div class="goodsinfo">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -21,10 +21,17 @@ export default {
         }
     
     },
+    computed: {
+        showImage() {
+            return this.goodsItem.image || this.goodsItem.show.img
+        }
+    },
     methods: {
         imageLoad() { 
+            //判断当前活跃路由，传出不同事件
+
             this.$bus.$emit('itemImageLoad')
-             //使用$emit将事件发送到$bus事件总线,home组件即可跳过goodslist组件直接监听该事件
+            //使用$emit将事件发送到$bus事件总线,home组件即可跳过goodslist组件直接监听该事件
         },
         itemClick() {
          this.$router.push('/detail/' + this.goodsItem.iid)

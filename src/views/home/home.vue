@@ -60,7 +60,9 @@ export default {
             currentType: 'pop',
             isshow: false,
             tabOffsetTop: 0,
-            isTabFxied: false
+            isTabFxied: false,
+            itemImageLisetener: null,
+ 
         }   
     },
     created() {
@@ -80,9 +82,15 @@ export default {
         //3.监听item中图片加载完成
         //每一张图片加载完成就调用一次刷新
         //由于调用频率过大，需要进行防抖处理，减轻服务器压力
-        this.$bus.$on('itemImageLoad',() => {
-               this.$refs.scroll.scroll.refresh()
-        })  
+        //对我们监听的事件进行保存
+        this.itemImageLisetener = () => {
+            this.$refs.scroll.scroll.refresh()
+        }
+        this.$bus.$on('itemImageLoad',this.itemImageLisetener) 
+    },
+    deactivated() {
+        //取消全局监听事件
+        this.$bus.$off('itemImageLoad', this.itemImageLisetener)
     },
     methods: {
         /* 事件监听方法 */
@@ -156,7 +164,7 @@ export default {
         swipeImageLoad() {
             this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
         }
-    }
+    },
 }
 
 

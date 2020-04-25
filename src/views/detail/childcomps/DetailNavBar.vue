@@ -24,8 +24,10 @@ export default {
         }  
     },
     methods: {
+        //监听导航栏点击
         titlesClick(key) {
             this.currentIndex = key
+            this.$emit('titlesClick', key)
         },
         backClick() {
             this.$router.go(-1)
