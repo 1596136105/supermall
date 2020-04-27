@@ -10,7 +10,7 @@
         <goods-list ref="recommends" :goods = recommends></goods-list>
         </scroll>
         <back-top @click.native = "backtopclick" v-show="isshow"></back-top>
-        <detail-bottom-bar></detail-bottom-bar>
+        <detail-bottom-bar @addCart = "addToCart"></detail-bottom-bar>
   </div>
 </template>
 
@@ -118,7 +118,7 @@ export default {
       imageload() {
           this.$refs.scroll.scroll.refresh()
            // $nextTick函数，传入一个函数作为回调函数，在更新后将会进行回调
-            //DOM加载完了，但是图片没有加载，所以高度依然是不对的
+           
             this.$nextTick(() => {
                 this.themeTopYs = []
 
@@ -164,6 +164,20 @@ export default {
 
         backtopclick() {
             this.$refs.scroll.scrollTo(0,0)
+        },
+        addToCart() {
+            //1.获取购物车需要展示的信息
+            const product = {}
+            product.image = this.topImages[0]
+            product.title = this.goods.title
+            product.desc = this.goods.desc
+            product.price = this.goods.newPrice
+            product.iid = this.iid
+
+            //2.将商品添加到购物车里
+            //这里用的是修改mutation，建议判断也在action中执行
+            // this.$store.commit('addCart',product)
+            this.$store.dispatch('addCart',product)
         }
     }
   

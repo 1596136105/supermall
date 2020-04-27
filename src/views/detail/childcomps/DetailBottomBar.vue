@@ -10,7 +10,7 @@
       <div class="title">收藏</div>
       </div>
       
-      <div class="cart button">加入购物车</div>
+      <div class="cart button" @click="addToCart">加入购物车</div>
       <div class="buy button">购买</div>
       
   </div>
@@ -18,7 +18,11 @@
 
 <script>
 export default {
-
+    methods: {
+        addToCart() {
+            this.$emit('addCart') 
+        }
+    }
 }
 </script>
 

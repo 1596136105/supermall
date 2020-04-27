@@ -141,7 +141,7 @@ export default {
            // 1.判断backtop是否显示
             this.isshow = (-position.y) > 1000
            //2.决定tabcontrol是否吸顶(position: fixed)
-            this.isTabFxied = (-position.y) > this.tabOffsetTop
+            this.isTabFxied = (-position.y) > this.tabOffsetTop + 1
         },
         loadmore() {
             this.getHomeGoods(this.currentType)
@@ -190,6 +190,7 @@ export default {
     }
     .tab-control {
         position: relative;
+        top: -2px;
         z-index: 9;
     }
     
