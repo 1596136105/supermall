@@ -26,6 +26,7 @@ export default {
      border-color: rgb(233, 114, 114);
  }
  .check-button img {
-     width: 14.22px;
+     width: 14px;
+     
  }
 </style>
