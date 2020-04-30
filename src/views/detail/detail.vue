@@ -26,6 +26,7 @@ import BackTop from '../../components/content/backtop/BackTop'
 
 
 import {getDetail,Goods,Shop,getRecommend} from "../../network/detail"
+import {Toast} from 'vant'
 
 import Scroll from '../../components/common/scroll/Scroll'
 import GoodsList from '../../components/content/goods/GoodsList'
@@ -177,7 +178,10 @@ export default {
             //2.将商品添加到购物车里
             //这里用的是修改mutation，建议判断也在action中执行
             // this.$store.commit('addCart',product)
-            this.$store.dispatch('addCart',product)
+            this.$store.dispatch('addCart',product).then(res => {
+                Toast.success(res)
+            })
+            
         }
     }
   

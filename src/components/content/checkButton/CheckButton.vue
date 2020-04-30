@@ -20,6 +20,8 @@ export default {
  .check-button {
      border-radius: 50%;
      border: 2px solid #aaa;
+     display: flex;
+     align-items: center;
  }
  .check {
      background-color: rgb(233, 114, 114);
@@ -27,6 +29,5 @@ export default {
  }
  .check-button img {
      width: 14px;
-     
  }
 </style>
