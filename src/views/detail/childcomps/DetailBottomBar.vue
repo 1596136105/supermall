@@ -1,9 +1,11 @@
 <template>
   <div class="bottom-bar">
-      <div class="shop long"><img src="../../../assets/img/detail/店铺.svg" alt="">
+      <div class="shop long">
+          <img src="../../../assets/img/detail/店铺.svg" alt="">
       <div class="title">店铺</div>
       </div>
-      <div class="customer-service long"><img src="../../../assets/img/detail/客服.svg" alt="">
+      <div class="customer-service long">
+          <img src="../../../assets/img/detail/客服.svg" alt="">
       <div class="title">客服</div>
       </div>
       <div class="collect long"><img src="../../../assets/img/detail/收藏.svg" alt="">
@@ -38,7 +40,7 @@ export default {
  }
  img {
      width: 30%;
-     margin-left: 4px;
+     margin-left: 7px;
      margin-top: 2px;
  }
 .long {
@@ -47,11 +49,9 @@ export default {
 .shop {
     margin-left: 8px;
 }
-.title {
-    margin-bottom: px;
-}
+
 .button {
-    width: 12vh;
+    width: 30vw;
     text-align: center;
     border-top: deeppink;
     line-height: 49px;
